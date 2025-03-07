@@ -1,21 +1,20 @@
-import { ChevronDown } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-export default function FilterComponent() {
+export default function FilterComponent({onChange}) {
   // prevent the page from reload
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const [sort,setSort] = useState("");
 
+  const handleChange=(e)=>{
+    const selectedSort = e.target.value;
+    setSort(selectedSort);
+    onChange(selectedSort);
+  }
   return (
-    <form className="mt-4 mx-4 flex justify-between" onSubmit={handleSubmit}>
+    <form className="mt-4 mx-4 flex justify-between" onChange={handleChange}>
       <div className="relative w-full ">
-        {/* <input
-          type="text"
-          placeholder="Filter Learning Materials"
-          className="w-5/6 p-4 focus:outline-none"
-        /> */}
         <select
+          value={sort}
+          onChange={handleChange}
           id="filterLearningMaterials"
           name="filterLearningMaterials"
           className="text-sm focus:ring-custom-sky-blue focus:border-custom-sky-blue block w-full p-4 focus:outline-none text-gray-400 border-none rounded-xl bg-light-gray"
@@ -28,7 +27,6 @@ export default function FilterComponent() {
             <option value="Z-A">Z-A</option>
           </optgroup>
         </select>
-        {/* <ChevronDown stroke="#B9B9B9" className="absolute top-4 right-3" /> */}
       </div>
     </form>
   );
