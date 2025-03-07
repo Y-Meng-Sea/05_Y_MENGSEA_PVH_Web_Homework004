@@ -2,7 +2,7 @@ import { EllipsisVertical } from "lucide-react";
 import AddNewProjectComponent from "./AddNewProjectComponent";
 import { useState } from "react";
 export default function CardComponent() {
-
+    
     const [data, setData] = useState([]);
     const getData=(value)=>{
         setData((prevData) => [...prevData, value]); 
@@ -21,7 +21,7 @@ export default function CardComponent() {
                     {item.progress == 75 ? <p className="text-custom-carrot font-medium">{item.dueDate}</p> :""}
                     {item.progress == 50 ?<p className="text-custom-yellow-500 font-medium">{item.dueDate}</p> :""}
                     {item.progress == 25 ?<p className="text-custom-pink font-medium">{item.dueDate}</p> :""}
-                
+                      {/* <p className="text-custom-sky-blue font-medium">{item.dueDate}</p> */}
                       <EllipsisVertical size={20} color="#374957" />
                   </div>
   

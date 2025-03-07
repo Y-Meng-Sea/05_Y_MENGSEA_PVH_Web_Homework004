@@ -9,6 +9,7 @@ export default function AddNewProjectComponent({onSubmit}) {
         description: ""
     });
 
+    
     // open module event handler
     const openModule = () => {
         document.getElementById("crud-modal").classList.remove("hidden");
@@ -28,14 +29,13 @@ export default function AddNewProjectComponent({onSubmit}) {
 
     const validateForm = () => {
         let newErrors = {};
-        if (!change.projectName.trim()) newErrors.projectName = "Project Name is required";
-        if (!change.dueDate) newErrors.dueDate = "Due Date is required";
+        if (!change.projectName.trim()) newErrors.projectName = "* Project Name is required.";
+        if (!change.dueDate) newErrors.dueDate = "* Please choose the dead line for your project.";
 
         const today = new Date().toISOString().split("T")[0]; 
-        if (change.dueDate && change.dueDate < today) newErrors.dueDate = "Due Date cannot be in the past";
+        if (change.dueDate && change.dueDate < today) newErrors.dueDate = "* Due Date cannot be in the past.";
 
-        if (!change.progress) newErrors.progress = "Please select a progress value";
-        if (!change.description.trim()) newErrors.description = "Description is required";
+        if (!change.progress) newErrors.progress = "* Please select your project progress.";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0; 
